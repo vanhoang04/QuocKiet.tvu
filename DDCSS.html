@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Management</title>
+<style>
+/* Styles for modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* Styles for table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Styles for form */
+form {
+  display: none;
+}
+
+form.show {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+  <h2>Customer Management</h2>
+  
+  <button onclick="document.getElementById('modal').style.display='block'">Add Customer</button>
+  
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span onclick="document.getElementById('modal').style.display='none'" class="close">×</span>
+      <h3>Add Customer</h3>
+      <form id="customerForm" class="show">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="product">Product:</label><br>
+        <select id="product" name="product">
+          <option value="product1">Product 1</option>
+          <option value="product2">Product 2</option>
+          <option value="product3">Product 3</option>
+        </select><br>
+        <label for="payment">Payment:</label><br>
+        <input type="text" id="payment" name="payment"><br>
+        <input type="submit" value="Save">
+      </form>
+    </div>
+  </div>
+  
+  <table id="customerTable">
+    <thead>
+      <tr>
+        <th>Tên</th>
+        <th>Tài Khoản</th>
+        <th>Mật Khẩu</th>
+        <th>Email</th>
+        <th>sản phẩm</th>
+        <th>tiền đã mua</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Customer rows will be added dynamically here -->
+    </tbody>
+  </table>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+    Thêm Sản Phẩm
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Thêm Sản Phẩm Mới</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm">
+            <div class="mb-3">
+              <label for="productName" class="form-label">Tên Sản Phẩm</label>
+              <input type="text" class="form-control" id="productName">
+            </div>
+            <div class="mb-3">
+              <label for="brand" class="form-label">Thương Hiệu</label>
+              <input type="text" class="form-control" id="brand">
+            </div>
+            <div class="mb-3">
+              <label for="strapType" class="form-label">Loại Dây</label>
+              <input type="text" class="form-control" id="strapType">
+            </div>
+            <div class="mb-3">
+              <label for="glassType" class="form-label">Loại Kính</label>
+              <input type="text" class="form-control" id="glassType">
+            </div>
+            <div class="mb-3">
+              <label for="movementType" class="form-label">Loại Máy</label>
+              <input type="text" class="form-control" id="movementType">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Giá Sản Phẩm</label>
+              <input type="text" class="form-control" id="price">
+            </div>
+            <div class="mb-3">
+              <label for="productLink" class="form-label">Đường Link Sản Phẩm</label>
+              <input type="text" class="form-control" id="productLink">
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table id="customerTable">
+    <thead>
+      <tr>
+        <th>Tên sản phẩm</th>
+        <th>Loại Dây</th>
+        <th>Loại kính</th>
+        <th>loại máy</th>
+        <th>giá sản phẩm</th>
+        <th>Đường link</th>
+      </tr>
+    </thead>
+    <tbody>
+  <script>
+  document.getElementById('customerForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    // Get form values
+    var name = document.getElementById('name').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var email = document.getElementById('email').value;
+    var product = document.getElementById('product').value;
+    var payment = document.getElementById('payment').value;
+    // Create new row in table
+    var newRow = "<tr><td>" + name + "</td><td>" + username + "</td><td>" + password + "</td><td>" + email + "</td><td>" + product + "</td><td>" + payment + "</td></tr>";
+    document.querySelector('#customerTable tbody').innerHTML += newRow;
+    // Clear form fields
+    document.getElementById('customerForm').reset();
+    // Close modal
+    document.getElementById('modal').style.display = 'none';
+  });
+  document.getElementById('productForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Ngăn chặn gửi yêu cầu form mặc định
+    
+    // Lấy giá trị từ các trường input
+    var productName = document.getElementById('productName').value;
+    var brand = document.getElementById('brand').value;
+    var strapType = document.getElementById('strapType').value;
+    var glassType = document.getElementById('glassType').value;
+    var movementType = document.getElementById('movementType').value;
+    var price = document.getElementById('price').value;
+    var productLink = document.getElementById('productLink').value;
+    
+    // Gửi yêu cầu AJAX để thêm sản phẩm mới vào cơ sở dữ liệu
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/add-product', true); // Thay đổi đường dẫn và phương thức POST tùy vào cài đặt của bạn
+    
+    // Thiết lập header cho yêu cầu
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    
+    // Xử lý kết quả sau khi yêu cầu được gửi đi
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Xử lý kết quả nếu cần
+        alert('Sản phẩm mới đã được thêm thành công!');
+        // Cập nhật bảng sản phẩm hoặc làm bất cứ điều gì khác sau khi thêm sản phẩm
+      } else {
+        // Xử lý lỗi nếu có
+        alert('Đã có lỗi xảy ra khi thêm sản phẩm.');
+      }
+    };
+    // Hàm thêm sản phẩm
+function addProduct() {
+  // Lấy giá trị từ các trường input
+  var productName = document.getElementById('productName').value;
+  var brand = document.getElementById('brand').value;
+  var strapType = document.getElementById('strapType').value;
+  var glassType = document.getElementById('glassType').value;
+  var movementType = document.getElementById('movementType').value;
+  var price = document.getElementById('price').value;
+  var productLink = document.getElementById('productLink').value;
+
+  // Tạo một đối tượng sản phẩm mới
+  var newProduct = {
+    productName: productName,
+    brand: brand,
+    strapType: strapType,
+    glassType: glassType,
+    movementType: movementType,
+    price: price,
+    productLink: productLink
+  };
+
+  // Thêm sản phẩm mới vào một mảng sản phẩm (ví dụ: products)
+  products.push(newProduct);
+
+  // Cập nhật giao diện người dùng hoặc làm bất cứ điều gì khác sau khi thêm sản phẩm
+}
+
+// Hàm tính tiền
+function calculateTotal() {
+  var total = 0;
+
+  // Duyệt qua mảng sản phẩm và cộng dồn giá của từng sản phẩm
+  for (var i = 0; i < products.length; i++) {
+    total += products[i].price;
+  }
+
+  // Hiển thị tổng tiền
+  alert('Tổng tiền: ' + total);
+}
+
+    // Gửi dữ liệu form dưới dạng JSON
+    xhr.send(JSON.stringify({
+      productName: productName,
+      brand: brand,
+      strapType: strapType,
+      glassType: glassType,
+      movementType: movementType,
+      price: price,
+      productLink: productLink
+    }));
+  });
+  
+  </script>
+  
+  </body>
+  </html>
+  
+</html>

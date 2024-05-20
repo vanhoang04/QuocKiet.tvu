@@ -1,0 +1,43 @@
+
+.product {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product img {
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product p {
+    font-size: auto;
+    color: blink;
+    margin-top: 10px;
+}
+
+.menu {
+    display: flex;
+    background-color:red;
+    justify-content: space-around;
+    border-bottom: 10px solid #ccc;
+    padding: 10px 0;
+}
+
+/* CSS cho các lựa chọn */
+.menu-item {
+    margin: 10px;
+    cursor: pointer;
+     color: blue;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+  
+    color:blue;
+}
+
+body {
+    text-align: center;
+}

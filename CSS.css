@@ -1,0 +1,63 @@
+.navbar {
+    background-color: #25b94a;
+    overflow: hidden;
+    display: flex; /* Biến các phần tử thành một hàng ngang */
+}
+
+.navbar a {
+    color: white;
+    display: flex; /* Hiển thị các phần tử theo chiều dọc */
+    flex-direction: column; /* Đặt chiều dọc cho các phần tử */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 16px; /* Kích thước văn bản */
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar a:not(:first-child) {
+    margin-left: 20px; /* Khoảng cách giữa các nút */
+}
+
+.navbar img {
+    width: 30px; /* Giảm kích thước icon xuống */
+    margin-bottom: 5px; /* Khoảng cách giữa icon và chữ */
+}
+
+.navbar span {
+    color: white; /* Màu của chữ */
+    font-size: 12px; /* Kích thước của chữ */
+}
+
+.product img {
+    width: 100px; /* Giảm kích thước ảnh sản phẩm */
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(214, 204, 14, 0.2);
+    transition: 0.3s;
+    width: 200px; /* Điều chỉnh kích thước của khung */
+    height: 300px; /* Điều chỉnh kích thước chiều cao của khung */
+    float: left;
+    margin: 15px;
+    background-color: #f2f2f2; /* Màu nền của khung */
+    border: 1px solid #ccc; /* Độ rộng và màu sắc của viền */
+    border-radius: 5px; /* Bo góc của khung */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+}
+
+.card-container {
+    padding: 10px; /* Điều chỉnh khoảng cách bên trong khung */
+}
